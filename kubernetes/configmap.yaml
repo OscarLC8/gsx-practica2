@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gsx-config
+data:
+  BACKEND_PORT: "3000"
+  NGINX_PORT: "80"
