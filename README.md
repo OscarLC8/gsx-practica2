@@ -22,9 +22,9 @@ Hem dissenyat un flux de treball que automatitza les tasques repetitives i garan
 ### Flux d'Integració Contínua (CI) a GitHub Actions:
 Quan es realitza un `push` a la branca de treball o un `merge` a `main`, s'activa el fitxer `.github/workflows/ci.yml`:
 
-*1 -> Validació de la IaC:* S'executen les ordres `terraform fmt` i `terraform validate` per assegurar que el codi no tingui errors de sintaxi o format.
-*2 -> Construcció d'Imatges:* Es generen les imatges de Docker per al Backend i per a Nginx.
-*3 -> Publicació al Registry:* Les imatges es pugen automàticament a Docker Hub utilitzant secrets de GitHub per protegir les credencials.
+- *1 -> Validació de la IaC:* S'executen les ordres `terraform fmt` i `terraform validate` per assegurar que el codi no tingui errors de sintaxi o format.
+- *2 -> Construcció d'Imatges:* Es generen les imatges de Docker per al Backend i per a Nginx.
+- *3 -> Publicació al Registry:* Les imatges es pugen automàticament a Docker Hub utilitzant secrets de GitHub per protegir les credencials.
 
 ### Flux de Desplegament Continu (CD) Local:
 Com que els servidors de GitHub no tenen accés al nostre clúster de *Minikube* local, el desplegament final s'executa des de la nostra màquina:
@@ -48,10 +48,10 @@ Aquesta etiqueta es defineix com una variable al fitxer `variables.tf` i s'injec
 ## 4. Organització del Codi Terraform
 Hem seguit les millors pràctiques d'organització per evitar fitxers massa llargs i fer el codi reutilitzable:
 
-*Fitxer* --> *Funció*
-`main.tf`      --> Defineix els recursos de Kubernetes (Deployments, Services, ConfigMaps).
-`variables.tf` --> Conté els paràmetres configurables (noms d'usuari, tags d'imatges) per evitar el hardcoding.
-`outputs.tf`   --> Mostra informació rellevant per pantalla després del desplegament.
+### Fitxer --> Funció
+- `main.tf`      --> Defineix els recursos de Kubernetes (Deployments, Services, ConfigMaps).
+- `variables.tf` --> Conté els paràmetres configurables (noms d'usuari, tags d'imatges) per evitar el hardcoding.
+- `outputs.tf`   --> Mostra informació rellevant per pantalla després del desplegament.
 
 --- 
 
@@ -59,10 +59,10 @@ Hem seguit les millors pràctiques d'organització per evitar fitxers massa llar
 Aquesta secció serveix com a manual per a futurs operadors del sistema.
 
 ### Passos per a un desplegament des de zero:
-*1. Preparació:* Iniciar el clúster local amb `minikube start`.
-*2. Inicialització:* Dins la carpeta `terraform/`, executar terraform `init` per descarregar els proveïdors.
-*3. Planificació:* Executar `terraform plan` per revisar quins canvis es faran al clúster.
-*4. Aplicació:* Executar `terraform apply` per desplegar tota la infraestructura automàticament.
+- *1. Preparació:* Iniciar el clúster local amb `minikube start`.
+- *2. Inicialització:* Dins la carpeta `terraform/`, executar terraform `init` per descarregar els proveïdors.
+- *3. Planificació:* Executar `terraform plan` per revisar quins canvis es faran al clúster.
+- *4. Aplicació:* Executar `terraform apply` per desplegar tota la infraestructura automàticament.
 
 ### Verificació del sistema:
 - Comprovar que els Pods estiguin en marxa: `kubectl get pods`.
