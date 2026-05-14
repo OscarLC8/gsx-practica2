@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-backend-to-db
+  namespace: default
+spec:
+  # A quins pods s'aplica aquesta política? (A la base de dades de producció)
+  podSelector:
+    matchLabels:
+      app: db
+      env: production
+  policyTypes:
+    - Ingress
+  # Qui pot connectar-se (Ingress) a la base de dades?
+  ingress:
+    - from:
+      # Només permetem el trànsit des dels pods del backend que estiguin a producció
+      - podSelector:
+          matchLabels:
+            app: backend
+            env: production
+      # Especifiquem el port de la base de dades (poso el 5432 pensant en PostgreSQL, canvia'l si uses un altre com el 3306 per MySQL)
+      ports:
+        - protocol: TCP
+          port: 5432
