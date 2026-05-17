@@ -43,7 +43,8 @@ resource "kubernetes_deployment" "backend" {
         container {
           name  = "python-backend"
           image = "${var.docker_username}/app-simple:v1"
-          port {
+	  image_pull_policy = "Never"          
+	  port {
             container_port = 3000
           }
         }
@@ -89,6 +90,7 @@ resource "kubernetes_deployment" "nginx" {
         container {
           name  = "web-nginx"
           image = "${var.docker_username}/nginx-gsx:v1"
+          image_pull_policy = "Never"
           port {
             container_port = 80
           }
