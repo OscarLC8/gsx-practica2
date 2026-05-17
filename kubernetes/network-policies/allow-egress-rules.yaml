@@ -4,18 +4,16 @@ metadata:
   name: allow-egress-and-dns
   namespace: default
 spec:
-  podSelector: {} # Se aplica a todos los pods para permitirles hacer consultas DNS
+  podSelector: {}
   policyTypes:
   - Egress
   egress:
-  # 1. Permitir consultas DNS (imprescindible para que 'curl http://db' funcione)
-  - ports:
+    - ports:
     - protocol: UDP
       port: 53
     - protocol: TCP
       port: 53
-  # 2. Permitir específicamente que el backend de producción salga hacia la DB
-  - to:
+    - to:
     - podSelector:
         matchLabels:
           app: db
