@@ -1,4 +1,3 @@
-# gsx-practica2
 # Documentació Setmana 10: Orquestració amb Kubernetes
 Aquesta secció documenta l'arquitectura i les decisions preses durant la migració de la nostra aplicació a Kubernetes, amb l'objectiu de garantir l'escalabilitat automàtica, la recuperació davant d'errors i l'alta disponibilitat.
 
