@@ -1,4 +1,3 @@
-# gsx-practica2
 # Setmana 9: Orquestració Multi-Contenidor (Docker Compose)
 En aquesta fase de la infraestructura, hem evolucionat de contenidors individuals a un entorn orquestrat localment mitjançant Docker Compose. Això ens permet definir, configurar i executar múltiples serveis interconnectats mitjançant un únic arxiu de configuració.
 
