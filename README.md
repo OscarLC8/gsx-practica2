@@ -1,5 +1,3 @@
-# gsx-practica2
-
 # Documentació Setmana 11: Infraestructura com a Codi (IaC) i CI/CD
 
 ## 1. Elecció de l'eina IaC: Terraform vs. Ansible
