@@ -6,16 +6,16 @@ En aquesta setmana, es vol proporcionar una arquitectura segura i segmentada per
 
 ### 1.1 Pla d'adreçament IP (CIDR)
 S'han definit els següents segments de xarxa per a tota la organització utilitzant el rang global 10.0.0.0/16. Aquest rang s'ha dividit en les següents subxaxes:
-- Desenvolupament: 10.0.1.0/24. Aquesta subxarxa admet fins a 254 IPs i conté els pods i serveis d'entorn de proves on els desenvolupadors treballen diàriament.
-- Staging: 10.0.2.0/24. Entorn pre-producció per validar les noves versions abans del llançament oficial.
-- Producció: 10.0.3.0/24. Entorn altament aïllat on s'executen les aplicacions finals de cara a l'usuari i la base de dades.
-- Partners Externs: 10.0.10.0/24. Zona aïllada per atorgar accessos temporals a contractistes i col·laboradors externs, garantint que no interactuïn de forma directa amb les zones més sensibles de l'empresa.
+- **Desenvolupament**: 10.0.1.0/24. Aquesta subxarxa admet fins a 254 IPs i conté els pods i serveis d'entorn de proves on els desenvolupadors treballen diàriament.
+- **Staging**: 10.0.2.0/24. Entorn pre-producció per validar les noves versions abans del llançament oficial.
+- **Producció**: 10.0.3.0/24. Entorn altament aïllat on s'executen les aplicacions finals de cara a l'usuari i la base de dades.
+- **Partners Externs**: 10.0.10.0/24. Zona aïllada per atorgar accessos temporals a contractistes i col·laboradors externs, garantint que no interactuïn de forma directa amb les zones més sensibles de l'empresa.
 
 Justificació: Com quue en GreenDevCorp hi han més de 20 persones i es preveu un ràpid creixement, assignar blocs de 254 adreces per a cada entorn permet un creixement ordenat de l'arquitectura sense esgotar ràpidament les direccions IP i també facilita l'escriptura de regles de tallafocs senzilles i clares.
 
 ### 1. Diagrama arquitectura de xarxa
 A continuació es mostra el diagrama de l'arquitectura de la xarxa, amb els seus segments i connexions corresponents:
-
+```text
 [ INTERNET / PARTNERS EXTERNS ]
            |
            v
@@ -41,7 +41,7 @@ A continuació es mostra el diagrama de l'arquitectura de la xarxa, amb els seus
      10.0.3.0/24
       /         \
  [Backend] --> [Base de Dades]
-
+```
 ## 2. Implementació seguretat i límits
 
 Per a evitar accessos indeguts i altres problemes de seguretat, s'han implkementat diferents mesures de seguretat.
@@ -89,18 +89,18 @@ Mantenir els sistemes sincronitzats és crucial tant per a la funcionalitat tèc
 ### 4.1 Autenticació vs Autorització
 Son dos conceptes que solen anar de la mà, pero tenen significats completament diferents:
 
-- Autenticació: Consisteix a verificar qui ets. És el moment de presentar l'usuari, la contrasenya o realitzar l'autenticació multifactor per demostrar la identitat (ex: Iniciar sessió).
+- **Autenticació**: Consisteix a verificar qui ets. És el moment de presentar l'usuari, la contrasenya o realitzar l'autenticació multifactor per demostrar la identitat (ex: Iniciar sessió).
 
-- Autorització: És el procés que avalua què pots fer dins de la plataforma una vegada la teva identitat s'ha verificat. Per exemple, comprovar si un compte té privilegis de visualització, edició o d'administrador.
+- **Autorització**: És el procés que avalua què pots fer dins de la plataforma una vegada la teva identitat s'ha verificat. Per exemple, comprovar si un compte té privilegis de visualització, edició o d'administrador.
 
 ### 4.2 Identitat centralitzada
 Si es gestionen les comptes de forma descentralitzada, es poden causar greus problemes de seguretat.
 
-- LDAP: És el protocol principal i "lleuger" utilitzat per cercar, llegir i validar identitats dins d'un directori jeràrquic informàtic unificat.
+- **LDAP**: És el protocol principal i "lleuger" utilitzat per cercar, llegir i validar identitats dins d'un directori jeràrquic informàtic unificat.
 
-- Active Directory (AD): És el servei creat per Microsoft que usa LDAP juntament amb altres tecnologies. A més de comptes d'usuari, gestiona permisos i polítiques d'ordinadors d'escriptori i impressores d'una empresa de manera granular.
+- **Active Directory** (AD): És el servei creat per Microsoft que usa LDAP juntament amb altres tecnologies. A més de comptes d'usuari, gestiona permisos i polítiques d'ordinadors d'escriptori i impressores d'una empresa de manera granular.
 
-- SSO (Single Sign-On): És el sistema que permet a un usuari iniciar sessió només un cop en un portal i, màgicament, obtenir accés directe a Slack, correu, repositoris i núvol sense haver d'escriure la contrasenya de nou a cada aplicació.
+- **SSO** (Single Sign-On): És el sistema que permet a un usuari iniciar sessió només un cop en un portal i, màgicament, obtenir accés directe a Slack, correu, repositoris i núvol sense haver d'escriure la contrasenya de nou a cada aplicació.
 
 L'ús d'identitats centralitzades elimina la problemàtica d'un extreballador mantenint l'accés a dades perquè ningú va recordar eliminar el seu compte del servidor X. Les petites empreses necessiten una base centralitzada per ser àgils i no sobrecarregar tècnics resetejant contrasenyes de serveis inconnexos, mentre que per les grans empreses és absolutament indispensable per garantir la seguretat i auditoria completa a gran escala.
 
