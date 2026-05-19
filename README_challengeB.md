@@ -32,3 +32,9 @@ real	0m1.812s
 user	0m0.322s
 sys	0m0.037s
 ```
+
+```text
+oscar@debian-gsx:~/gsx-practica2/terraform$ curl http://localhost:8080
+Handling connection for 8080
+<h1>Hola desde el meu contenidor Nginx de la Setmana 8</h1>
+```
